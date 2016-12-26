@@ -1,3 +1,19 @@
+## Customize the test machine
 machine:
+  # Version of java to use
   java:
-    version: openjdk8
+    version: oraclejdk8
+
+## Customize test commands
+test:
+  pre:
+    - git clone https://github.com/linanqiu/ci-grader-demo.git
+    - cp ci-grader-demo/build.sh ./build.sh
+    - cp ci-grader-demo/Grader.java ./Grader.java
+  override:
+    - sh build.sh
+
+notify:
+  webhooks:
+    - url: http://cs3134-jarvis.meteor.com/webhook/ci
+Contact GitHub API Training Shop Blog About
